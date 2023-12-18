@@ -11,7 +11,7 @@ char BudgetingApplication::chooseOptionFromMainMenu()
     cout << "2. Sign in" << endl;
     cout << "3. Exit" << endl;
     cout << "---------------------------" << endl;
-    choice = AuxiliaryFunctions::getChar();
+    choice = AuxiliaryFunctions::readChar();
 
     return choice;
 }
@@ -30,7 +30,7 @@ char BudgetingApplication::chooseOptionFromUserMenu()
     cout << "6. Change password" << endl;
     cout << "7. Sign out" << endl;
     cout << "----------------------------------------" << endl;
-    choice = AuxiliaryFunctions::getChar();
+    choice = AuxiliaryFunctions::readChar();
 
     return choice;
 }
