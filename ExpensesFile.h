@@ -11,17 +11,18 @@ class ExpensesFile : public XmlFile
 {
     int lastExpenseId;
 
-    int getLastExpenseIdFromFile();
 public:
     ExpensesFile(string expensesFilename) : XmlFile(expensesFilename)
     {
-        lastExpenseId = getLastExpenseIdFromFile();
+        lastExpenseId = 0;
     };
     vector<Expense> readExpensesOfLoggedUserFromXmlFile(int CURRENT_USER_ID);
     void displayExpense(Expense expense);
     //void displayExpense(vector <Expense>::iterator itr);
-    bool addExpenseToXmlFile(Expense expense, DataManager dataManager);
+    //bool addExpenseToXmlFile(Expense expense, DataManager dataManager);
+    void addExpenseToXmlFile(Expense expense, DateManager dateManager);
     int getLastExpenseId();
+    int getLastExpenseIdFromFile();
 };
 
 #endif // EXPENSESFILE

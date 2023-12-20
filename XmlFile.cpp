@@ -1,6 +1,6 @@
 #include "XmlFile.h"
 
-bool XmlFile::ifFileExist(CMarkup xml)
+bool XmlFile::ifFileExist(CMarkup &xml)
 {
     return xml.Load(getFilename());
 }

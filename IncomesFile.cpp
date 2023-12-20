@@ -1,12 +1,17 @@
 #include "IncomesFile.h"
 
+int IncomesFile::getLastIncomeId()
+{
+    return lastIncomeId;
+}
+
 void IncomesFile::displayIncome(Income income)
 {
     cout << "Income ID:   " << income.getIncomeId() << endl;
     cout << "User ID:     " << income.getUserId() << endl;
-    cout << "Date:        " << dataManager.changeDateToString(income.getDate()) << endl;
-    cout << "Category:        " << income.getCategory() << endl;
-    cout << "Amount:      " << income.getOperationValue() << endl;
+    cout << "Date:        " << dateManager.changeDateToString(income.getDate()) << endl;
+    cout << "Category:    " << income.getCategory() << endl;
+    cout << "Amount:      " << income.getOperationValue() << " PLN" << endl;
 }
 
 vector<Income> IncomesFile::readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_ID)
@@ -31,7 +36,7 @@ vector<Income> IncomesFile::readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_
                 income.setUserId(CURRENT_USER_ID);
                 income.setIncomeId(incomeId);
                 xml.FindElem("Date");
-                income.setDate(dataManager.changeDateToIntNumber(xml.GetElemContent()));
+                income.setDate(dateManager.changeDateToIntNumber(xml.GetElemContent()));
                 xml.FindElem("Category");
                 income.setCategory(xml.GetElemContent());
                 xml.FindElem("Amount");
@@ -43,7 +48,8 @@ vector<Income> IncomesFile::readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_
     }
     return incomes;
 }
-bool IncomesFile::addIncomeToXmlFile(Income income, DataManager dataManager)
+
+void IncomesFile::addIncomeToXmlFile(Income income, DateManager dateManager)
 {
     CMarkup xml;
 
@@ -52,13 +58,14 @@ bool IncomesFile::addIncomeToXmlFile(Income income, DataManager dataManager)
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
+
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
     xml.IntoElem();
     xml.AddElem("IncomeId", income.getIncomeId());
     xml.AddElem("UserId", income.getUserId());
-    xml.AddElem("Date", dataManager.getDateString());
+    xml.AddElem("Date", dateManager.getDateString());
     xml.AddElem("Category", income.getCategory());
     xml.AddElem("Amount", AuxiliaryFunctions::convertFloatToString(income.getOperationValue()));
     xml.OutOfElem();
@@ -67,29 +74,25 @@ bool IncomesFile::addIncomeToXmlFile(Income income, DataManager dataManager)
     if (!ifFileExist(xml))
     {
         cout << "Cannot open the " << getFilename() << " file." << endl;
-        return false;
     }
-    return true;
 }
+
 int IncomesFile::getLastIncomeIdFromFile()
 {
     CMarkup xml;
-    vector <Income> incomes;
+    int lastIncomeId = 0;
 
     if (ifFileExist(xml))
     {
         xml.FindElem();
         xml.IntoElem();
-        while (xml.FindElem("Income"))
+        xml.FindElem("Income");
+        if (xml.FindChildElem("IncomeId"))
         {
-            xml.FindChildElem("IncomeId");
+            lastIncomeId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());
         }
-        return lastIncomeId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());;
     }
-    else
-        return 0;
+
+  return lastIncomeId;
 }
-int IncomesFile::getLastIncomeId()
-{
-    return lastIncomeId;
-}
+

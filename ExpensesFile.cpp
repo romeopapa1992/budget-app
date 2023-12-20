@@ -3,10 +3,10 @@
 void ExpensesFile::displayExpense(Expense expense)
 {
     cout << "Expense ID: " << expense.getExpenseId() << endl;
-    cout << "User ID:   " << expense.getUserId() << endl;
-    cout << "Date:    " << dataManager.changeDateToString(expense.getDate()) << endl;
-    cout << "Category:    " << expense.getCategory() << endl;
-    cout << "Amount:   " << expense.getOperationValue() << endl;
+    cout << "User ID:    " << expense.getUserId() << endl;
+    cout << "Date:       " << dateManager.changeDateToString(expense.getDate()) << endl;
+    cout << "Category:   " << expense.getCategory() << endl;
+    cout << "Amount:     " << expense.getOperationValue() << " PLN" << endl;
 }
 
 vector<Expense> ExpensesFile::readExpensesOfLoggedUserFromXmlFile(int CURRENT_USER_ID)
@@ -31,7 +31,7 @@ vector<Expense> ExpensesFile::readExpensesOfLoggedUserFromXmlFile(int CURRENT_US
                 expense.setUserId(CURRENT_USER_ID);
                 expense.setExpenseId(expenseId);
                 xml.FindElem("Date");
-                expense.setDate(dataManager.changeDateToIntNumber(xml.GetElemContent()));
+                expense.setDate(dateManager.changeDateToIntNumber(xml.GetElemContent()));
                 xml.FindElem("Category");
                 expense.setCategory(xml.GetElemContent());
                 xml.FindElem("Amount");
@@ -43,7 +43,8 @@ vector<Expense> ExpensesFile::readExpensesOfLoggedUserFromXmlFile(int CURRENT_US
     }
     return expenses;
 }
-bool ExpensesFile::addExpenseToXmlFile(Expense expense, DataManager dataManager)
+
+void ExpensesFile::addExpenseToXmlFile(Expense expense, DateManager dateManager)
 {
     CMarkup xml;
 
@@ -58,7 +59,7 @@ bool ExpensesFile::addExpenseToXmlFile(Expense expense, DataManager dataManager)
     xml.IntoElem();
     xml.AddElem("ExpenseId", expense.getExpenseId());
     xml.AddElem("UserId", expense.getUserId());
-    xml.AddElem("Date", dataManager.getDateString());
+    xml.AddElem("Date", dateManager.getDateString());
     xml.AddElem("Category", expense.getCategory());
     xml.AddElem("Amount", AuxiliaryFunctions::convertFloatToString(expense.getOperationValue()));
     xml.OutOfElem();
@@ -67,28 +68,28 @@ bool ExpensesFile::addExpenseToXmlFile(Expense expense, DataManager dataManager)
     if (!ifFileExist(xml))
     {
         cout << "Cannot open the " << getFilename() << " file." << endl;
-        return false;
     }
-    return true;
 }
+
 int ExpensesFile::getLastExpenseIdFromFile()
 {
     CMarkup xml;
-    vector <Expense> expense;
+    int lastExpenseId = 0;
 
     if (ifFileExist(xml))
     {
         xml.FindElem();
         xml.IntoElem();
-        while (xml.FindElem("Expense"))
-        {
-            xml.FindChildElem("ExpenseId");
-        }
-        return lastExpenseId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());;
+        xml.FindElem("Expense");
+            if (xml.FindChildElem("ExpenseId"))
+            {
+                lastExpenseId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());
+            }
     }
-    else
-        return 0;
+
+  return lastExpenseId;
 }
+
 int ExpensesFile::getLastExpenseId()
 {
     return lastExpenseId;

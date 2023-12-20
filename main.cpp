@@ -22,8 +22,7 @@ int main()
             case '3': exit(0); break;
             default:
                 cout << endl << "No such option in the main menu." << endl << endl;
-                system("pause");
-                break;
+                system("pause"); break;
             }
         }
         else

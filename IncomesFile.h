@@ -10,16 +10,18 @@ class IncomesFile : public XmlFile
 {
     int lastIncomeId;
 
-    int getLastIncomeIdFromFile();
 public:
     IncomesFile(string incomesFilename) : XmlFile(incomesFilename)
     {
-        lastIncomeId = getLastIncomeIdFromFile();
+        //lastIncomeId = getLastIncomeIdFromFile();
+        lastIncomeId = 0;
     };
     vector<Income> readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_ID);
     void displayIncome(Income income);
-    bool addIncomeToXmlFile(Income income, DataManager dataManager);
+    //bool addIncomeToXmlFile(Income income, DataManager dataManager);
+    void addIncomeToXmlFile(Income income, DateManager dateManager);
     int getLastIncomeId();
+    int getLastIncomeIdFromFile();
 };
 
 #endif

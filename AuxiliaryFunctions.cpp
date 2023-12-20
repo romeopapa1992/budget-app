@@ -7,14 +7,13 @@ char AuxiliaryFunctions::readChar()
 
     while (true)
     {
-        getline(cin, choice);
-
+        choice = AuxiliaryFunctions::readLine();
         if (choice.length() == 1)
         {
             character = choice[0];
             break;
         }
-        cout << "This is not a single character. Enter the character again." << endl;
+        cout << "This is not a single character. Please try again." << endl;
     }
     return character;
 }
@@ -28,22 +27,41 @@ string AuxiliaryFunctions::readLine()
 
 float AuxiliaryFunctions::getFloatNumber()
 {
-    string input = "";
-    float number = 0;
-
     while (true)
     {
-        getline(cin, input);
-        if (stof(input))
+        string input = AuxiliaryFunctions::readLine();
+
+        if (input.empty())
         {
-            input = changeCommaToDot(input);
-            break;
+            cout << "Input empty. Please try again." << endl;
+            continue;
+        }
+        replace(input.begin(), input.end(), ',', '.');
+
+        bool validInput = true;
+        for (size_t i = 0; i < input.length(); ++i)
+        {
+            if (input[i] == '.')
+            {
+                continue;
+            }
+
+            if (!isdigit(input[i]))
+            {
+                validInput = false;
+                break;
+            }
         }
 
-        cout << "It is not a number. Enter a number again." << endl;
+        if (validInput)
+        {
+            return convertStringToFloat(input);
+        }
+        else
+        {
+            cout << "Incorrect input. Try again." << endl;
+        }
     }
-    number = stof(input);
-    return number;
 }
 
 string AuxiliaryFunctions::convertIntToString(int number)

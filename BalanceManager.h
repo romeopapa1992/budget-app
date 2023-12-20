@@ -6,7 +6,7 @@
 
 #include "IncomesFile.h"
 #include "ExpensesFile.h"
-#include "DataManager.h"
+#include "DateManager.h"
 
 using namespace std;
 
@@ -18,7 +18,10 @@ class BalanceManager
 
     IncomesFile incomesFile;
     ExpensesFile expensesFile;
-    DataManager dataManager;
+    DateManager dateManager;
+
+    float totalIncome = 0;
+    float totalExpense = 0;
 
     Income enterNewIncomeData();
     Expense enterNewExpenseData();
@@ -27,10 +30,9 @@ class BalanceManager
     void sortExpensesByDate();
     void displaySortedIncomes(int fromDate, int toDate);
     void displaySortedExpenses(int fromDate, int toDate);
-    void calculateTotalIncome(Income income);
-    void calculateTotalExpense(Expense expense);
-    float totalIncome;
-    float totalExpense;
+    //void calculateTotalIncome(Income income);
+    //void calculateTotalExpense(Expense expense);
+
 
 public:
     BalanceManager(int currentUserId, string incomesFilename, string expensesFilename)

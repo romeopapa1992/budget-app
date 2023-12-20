@@ -29,60 +29,51 @@ vector <User> UsersFile::readUsersFromXmlFile()
     }
     return users;
 }
-bool UsersFile::addUserToXmlFile(User user)
-{
-    CMarkup xml;
 
-    if (!ifFileExist(xml))
-    {
-        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Users");
-    }
+void UsersFile::addUserToXmlFile(User user)
+{
+  CMarkup xml;
+
+  if (!ifFileExist(xml))
+  {
+    xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+    xml.AddElem("Users");
+  }
+  xml.FindElem();
+  xml.IntoElem();
+  xml.AddElem("User");
+  xml.IntoElem();
+  xml.AddElem("UserId", user.getUserId());
+  xml.AddElem("Name", user.getName());
+  xml.AddElem("Surname", user.getSurname());
+  xml.AddElem("Login", user.getLogin());
+  xml.AddElem("Password", user.getPassword());
+  xml.OutOfElem();
+  xml.Save(getFilename());
+  if (!ifFileExist(xml))
+  {
+    cout << "Cannot open the " << getFilename() << " file." << endl;
+  }
+}
+
+void UsersFile::changeUserPassword(int loggedUserId, string newPassword)
+{
+    string loggedId = AuxiliaryFunctions::convertIntToString(loggedUserId);
+    CMarkup xml;
+    xml.Load(getFilename());
     xml.FindElem();
     xml.IntoElem();
-    xml.AddElem("User");
-    xml.IntoElem();
-    xml.AddElem("UserId", user.getUserId());
-    xml.AddElem("Name", user.getName());
-    xml.AddElem("Surname", user.getSurname());
-    xml.AddElem("Login", user.getLogin());
-    xml.AddElem("Password", user.getPassword());
-    xml.OutOfElem();
-    xml.Save(getFilename());
-    if (!ifFileExist(xml))
+    while(xml.FindElem("User"))
     {
-        cout << "Cannot open the " << getFilename() << " file." << endl;
-        return false;
-    }
-    return true;
-}
-bool UsersFile::changeUserPassword(vector <User>::iterator itr)
-{
-    CMarkup xml;
-
-    if (ifFileExist(xml))
-    {
-        xml.FindElem();
         xml.IntoElem();
-        while(xml.FindElem("User"))
+        xml.FindElem("UserId");
+        if (xml.GetData() == loggedId)
         {
-            xml.IntoElem();
-            xml.FindElem("UserId");
-            int userId = AuxiliaryFunctions::convertStringToInt(xml.GetElemContent());
-            if (userId == itr -> getUserId())
-            {
-                xml.FindElem("Password");
-                xml.SetData(itr -> getPassword());
-                xml.Save(getFilename());
-                return true;
-            }
-            xml.OutOfElem();
+            xml.FindElem("Password");
+            xml.SetData(newPassword);
+            break;
         }
+        xml.OutOfElem();
     }
-    else
-    {
-        cout << "Cannot open the " << getFilename() << " file." << endl;
-        return false;
-    }
-
+    xml.Save(getFilename());
 }

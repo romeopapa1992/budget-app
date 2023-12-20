@@ -89,5 +89,4 @@ void BudgetingApplication::logout()
     userManager.logout();
     delete balanceManager;
     balanceManager = NULL;
-
 }

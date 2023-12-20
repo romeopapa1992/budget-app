@@ -16,8 +16,11 @@ public:
     UsersFile(string usersFilename) : XmlFile(usersFilename)
     {};
     vector<User> readUsersFromXmlFile();
-    bool addUserToXmlFile(User user);
-    bool changeUserPassword(vector <User>::iterator itr);
+    void addUserToXmlFile(User user);
+    void changeUserPassword(int loggedUserId, string newPassword);
+    //void changeUserPassword(vector<User>::iterator itr);
+    //bool addUserToXmlFile(User user);
+    //bool changeUserPassword(vector <User>::iterator itr);
 };
 
 #endif

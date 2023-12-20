@@ -6,7 +6,7 @@
 
 #include "CMarkup.h"
 #include "AuxiliaryFunctions.h"
-#include "DataManager.h"
+#include "DateManager.h"
 
 using namespace std;
 
@@ -15,9 +15,9 @@ class XmlFile
     const string FILENAME;
 
 public:
-    DataManager dataManager;
+    DateManager dateManager;
     XmlFile(string filename) : FILENAME(filename){}
-    bool ifFileExist(CMarkup xml);
+    bool ifFileExist(CMarkup &xml);
     string getFilename();
 };
 
