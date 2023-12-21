@@ -25,8 +25,10 @@ string AuxiliaryFunctions::readLine()
     return input;
 }
 
-float AuxiliaryFunctions::getFloatNumber()
+double AuxiliaryFunctions::getDoubleNumber()
 {
+    string input = "";
+
     while (true)
     {
         string input = AuxiliaryFunctions::readLine();
@@ -55,7 +57,7 @@ float AuxiliaryFunctions::getFloatNumber()
 
         if (validInput)
         {
-            return convertStringToFloat(input);
+            return convertStringToDouble(input);
         }
         else
         {
@@ -80,18 +82,18 @@ int AuxiliaryFunctions::convertStringToInt(string snumber)
     return number;
 }
 
-string AuxiliaryFunctions::convertFloatToString(float fnumber)
+string AuxiliaryFunctions::convertDoubleToString(double doubleNumber)
 {
     ostringstream ss;
-    ss << fnumber;
+    ss << doubleNumber;
     string str = ss.str();
     return str;
 }
 
-float AuxiliaryFunctions::convertStringToFloat(string snumber)
+double AuxiliaryFunctions::convertStringToDouble(string stringNumber)
 {
-    float number;
-    istringstream iss(snumber);
+    double number;
+    istringstream iss(stringNumber);
     iss >> number;
     return number;
 }

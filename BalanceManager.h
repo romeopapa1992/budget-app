@@ -20,8 +20,8 @@ class BalanceManager
     ExpensesFile expensesFile;
     DateManager dateManager;
 
-    float totalIncome = 0;
-    float totalExpense = 0;
+    double totalIncome = 0;
+    double totalExpense = 0;
 
     Income enterNewIncomeData();
     Expense enterNewExpenseData();
@@ -30,9 +30,6 @@ class BalanceManager
     void sortExpensesByDate();
     void displaySortedIncomes(int fromDate, int toDate);
     void displaySortedExpenses(int fromDate, int toDate);
-    //void calculateTotalIncome(Income income);
-    //void calculateTotalExpense(Expense expense);
-
 
 public:
     BalanceManager(int currentUserId, string incomesFilename, string expensesFilename)

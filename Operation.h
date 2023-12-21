@@ -13,7 +13,6 @@ class Operation
     float operationValue;
 
 public:
-    bool operator () (Operation a, Operation b);
     int getUserId();
     int getDate();
     string getCategory();
@@ -23,6 +22,7 @@ public:
     void setDate(int newDate);
     void setCategory(string newCategory);
     void setOperationValue(float newOperationValue);
+    bool operator () (Operation a, Operation b);
 };
 
 #endif

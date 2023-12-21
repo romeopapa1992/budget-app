@@ -1,27 +1,26 @@
 #ifndef INCOMESFILE_H
 #define INCOMESFILE_H
 
-#include "XmlFile.h"
 #include "Income.h"
+#include "XmlFile.h"
+#include "DateManager.h"
 
 using namespace std;
 
 class IncomesFile : public XmlFile
 {
-    int lastIncomeId;
+   int lastIncomeId;
 
 public:
-    IncomesFile(string incomesFilename) : XmlFile(incomesFilename)
-    {
-        //lastIncomeId = getLastIncomeIdFromFile();
-        lastIncomeId = 0;
-    };
-    vector<Income> readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_ID);
-    void displayIncome(Income income);
-    //bool addIncomeToXmlFile(Income income, DataManager dataManager);
-    void addIncomeToXmlFile(Income income, DateManager dateManager);
-    int getLastIncomeId();
-    int getLastIncomeIdFromFile();
+   IncomesFile(string incomesFilename) : XmlFile(incomesFilename)
+   {
+       lastIncomeId = 0;
+   };
+   void displayIncome(Income income);
+   void addIncomeToXmlFile(Income income, DateManager dateManager);
+   vector<Income> readIncomesOfLoggedUserFromXmlFile(int CURRENT_USER_ID);
+   int getLastIncomeId();
+   int getLastIncomeIdFromFile();
 };
 
 #endif

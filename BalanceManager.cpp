@@ -7,6 +7,7 @@ void BalanceManager::addIncome()
 
     incomes.push_back(income);
     incomesFile.addIncomeToXmlFile(income,dateManager);
+
     cout << endl << "The income has been added." << endl;
 
     system ("pause");
@@ -44,6 +45,9 @@ void BalanceManager::displayCurrentMonthBalance()
     cout << "Total expense:    " << totalExpense << " PLN" << endl;
     cout << "Monthly balance:  " << totalIncome - totalExpense << " PLN" << endl << endl;
 
+    totalIncome = 0;
+    totalExpense = 0;
+
     system("pause");
 }
 
@@ -67,6 +71,9 @@ void BalanceManager::displayPreviousMonthBalance()
     cout << "Total income:     " << totalIncome << " PLN" << endl;
     cout << "Total expense:    " << totalExpense << " PLN" << endl;
     cout << "Monthly balance:  " << totalIncome - totalExpense << " PLN" << endl << endl;
+
+    totalIncome = 0;
+    totalExpense = 0;
 
     system("pause");
 }
@@ -102,13 +109,16 @@ void BalanceManager::displaySelectedPeriodOfTimeBalance()
     cout << "Total expense:    " << totalExpense << " PLN" << endl;
     cout << "Monthly balance:  " << totalIncome - totalExpense << " PLN" << endl << endl;
 
+    totalIncome = 0;
+    totalExpense = 0;
+
     system("pause");
 }
 
 Income BalanceManager::enterNewIncomeData()
 {
     string category = "";
-    float operationValue = 0;
+    double operationValue = 0;
 
     Income income;
 
@@ -118,9 +128,9 @@ Income BalanceManager::enterNewIncomeData()
     cout << "Enter category: ";
     category = AuxiliaryFunctions::readLine();
     cout << "Enter amount: ";
-    operationValue = AuxiliaryFunctions::getFloatNumber();
+    operationValue = AuxiliaryFunctions::getDoubleNumber();
 
-    income.setIncomeId(incomesFile.getLastIncomeId() + 1);
+    income.setIncomeId(incomesFile.getLastIncomeId()+ 1);
     income.setUserId(CURRENT_USER_ID);
     income.setDate(dateManager.getDateInteger());
     income.setCategory(category);
@@ -132,7 +142,7 @@ Income BalanceManager::enterNewIncomeData()
 Expense BalanceManager::enterNewExpenseData()
 {
     string category = "";
-    float operationValue = 0;
+    double operationValue = 0;
 
     Expense expense;
 
@@ -142,7 +152,7 @@ Expense BalanceManager::enterNewExpenseData()
     cout << "Enter category: ";
     category = AuxiliaryFunctions::readLine();
     cout << "Enter amount: ";
-    operationValue = AuxiliaryFunctions::getFloatNumber();
+    operationValue = AuxiliaryFunctions::getDoubleNumber();
 
     expense.setExpenseId(expensesFile.getLastExpenseId() + 1);
     expense.setUserId(CURRENT_USER_ID);

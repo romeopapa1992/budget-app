@@ -12,11 +12,11 @@ class AuxiliaryFunctions
 public:
     static char readChar();
     static string readLine();
-    static float getFloatNumber();
+    static double getDoubleNumber();
     static string convertIntToString(int number);
-    static int convertStringToInt(string snumber);
-    static string convertFloatToString(float fnumber);
-    static float convertStringToFloat(string snumber);
+    static int convertStringToInt(string stringNumber);
+    static string convertDoubleToString(double doubleNumber);
+    static double convertStringToDouble(string stringNumber);
     static string changeCommaToDot(string input);
     static string convertFirstLetterToUppercaseRestLower(string text);
 };

@@ -76,7 +76,7 @@ void DateManager::enterDateOfOperation()
         dateInteger = changeDateToIntNumber(dateString);
         if (!ifDateCorrect())
         {
-            cout << "Wrong date. Please enter the date again." << endl;
+            cout << "Invalid date. Please enter the date again." << endl;
             enterDateOfOperation();
         }
     }
