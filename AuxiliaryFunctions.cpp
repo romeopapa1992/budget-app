@@ -61,7 +61,7 @@ double AuxiliaryFunctions::getDoubleNumber()
         }
         else
         {
-            cout << "Incorrect input. Try again." << endl;
+            cout << "Invalid input. Try again." << endl;
         }
     }
 }
@@ -98,16 +98,6 @@ double AuxiliaryFunctions::convertStringToDouble(string stringNumber)
     return number;
 }
 
-string AuxiliaryFunctions::changeCommaToDot(string input)
-{
-    size_t foundComma = input.find(",");
-    if(foundComma != string::npos)
-    {
-        input.replace(foundComma, 1, ".");
-    }
-    return input;
-}
-
 string AuxiliaryFunctions::convertFirstLetterToUppercaseRestLower(string text)
 {
     if (!text.empty())
@@ -116,4 +106,14 @@ string AuxiliaryFunctions::convertFirstLetterToUppercaseRestLower(string text)
         text[0] = toupper(text[0]);
     }
     return text;
+}
+
+string AuxiliaryFunctions::changeCommaToDot(string input)
+{
+    size_t foundComma = input.find(",");
+    if(foundComma != string::npos)
+    {
+        input.replace(foundComma, 1, ".");
+    }
+    return input;
 }

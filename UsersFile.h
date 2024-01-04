@@ -6,7 +6,6 @@
 #include "User.h"
 #include "XmlFile.h"
 
-
 using namespace std;
 
 class UsersFile : public XmlFile

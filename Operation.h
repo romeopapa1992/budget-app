@@ -17,7 +17,6 @@ public:
     int getDate();
     string getCategory();
     float getOperationValue();
-
     void setUserId(int newUserId);
     void setDate(int newDate);
     void setCategory(string newCategory);

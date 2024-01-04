@@ -82,6 +82,5 @@ int ExpensesFile::getLastExpenseIdFromFile()
             lastExpenseId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());
         }
     }
-
   return lastExpenseId;
 }

@@ -81,7 +81,7 @@ void BudgetingApplication::changeLoggedUserPassword()
 
 bool BudgetingApplication::isUserLogged()
 {
-    userManager.isUserLogged();
+    return userManager.isUserLogged();
 }
 
 void BudgetingApplication::logout()

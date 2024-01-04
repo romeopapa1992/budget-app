@@ -33,6 +33,22 @@ string DateManager::changeDateToString(int date)
     return dateString;
 }
 
+string DateManager::createDate()
+{
+    string dateString;
+
+    yearString = AuxiliaryFunctions::convertIntToString(year);
+    monthString = AuxiliaryFunctions::convertIntToString(month);
+    dayString = AuxiliaryFunctions::convertIntToString(day);
+
+    monthString = (month > 0 && month < 10) ? "0" + monthString : monthString;
+    dayString = (day > 0 && day < 10) ? "0" + dayString : dayString;
+
+    dateString = yearString + "-" + monthString + "-" + dayString;
+
+    return dateString;
+}
+
 string DateManager::getTodaysDateFromSystem()
 {
     string dateString;
@@ -41,7 +57,6 @@ string DateManager::getTodaysDateFromSystem()
     year = now->tm_year + 1900;
     month = now->tm_mon + 1;
     day = now->tm_mday;
-
     dateString = createDate();
 
     return dateString;
@@ -80,22 +95,6 @@ void DateManager::enterDateOfOperation()
             enterDateOfOperation();
         }
     }
-}
-
-string DateManager::createDate()
-{
-    string dateString;
-
-    yearString = AuxiliaryFunctions::convertIntToString(year);
-    monthString = AuxiliaryFunctions::convertIntToString(month);
-    dayString = AuxiliaryFunctions::convertIntToString(day);
-
-    monthString = (month > 0 && month < 10) ? "0" + monthString : monthString;
-    dayString = (day > 0 && day < 10) ? "0" + dayString : dayString;
-
-    dateString = yearString + "-" + monthString + "-" + dayString;
-
-    return dateString;
 }
 
 bool DateManager::ifLeapYear(int year)

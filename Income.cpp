@@ -8,4 +8,4 @@ int Income::getIncomeId()
 void Income::setIncomeId(int newIncomeId)
 {
     incomeId = newIncomeId;
-}
+{

@@ -9,4 +9,3 @@ void Expense::setExpenseId(int newExpenseId)
 {
     expenseId = newExpenseId;
 }
-

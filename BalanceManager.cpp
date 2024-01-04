@@ -6,7 +6,7 @@ void BalanceManager::addIncome()
     income = enterNewIncomeData();
 
     incomes.push_back(income);
-    incomesFile.addIncomeToXmlFile(income,dateManager);
+    incomesFile.addIncomeToXmlFile(income, dateManager);
 
     cout << endl << "The income has been added." << endl;
 
@@ -19,7 +19,7 @@ void BalanceManager::addExpense()
     expense = enterNewExpenseData();
 
     expenses.push_back(expense);
-    expensesFile.addExpenseToXmlFile(expense,dateManager);
+    expensesFile.addExpenseToXmlFile(expense, dateManager);
     cout << endl << "The expense has been added." << endl;
 
     system ("pause");

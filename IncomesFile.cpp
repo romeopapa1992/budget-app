@@ -82,6 +82,5 @@ int IncomesFile::getLastIncomeIdFromFile()
             lastIncomeId = AuxiliaryFunctions::convertStringToInt(xml.GetChildData());
         }
     }
-
   return lastIncomeId;
 }

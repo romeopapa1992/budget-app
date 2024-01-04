@@ -20,7 +20,7 @@ void UserManager::signIn()
 {
     User user;
     system("cls");
-    cout << "    >>> SIGN IN <<<" << endl;
+    cout << ">>> SIGN IN <<<" << endl;
     int numberOfAttempts =3;
     string login, password;
     cout << endl << "Enter username: ";
@@ -37,7 +37,7 @@ void UserManager::signIn()
 
                 if (users[i].getPassword() == password)
                 {
-                    cout << endl << "You have been signed in. "<< endl << endl;
+                    cout << endl << "You have been signed in."<< endl << endl;
                     loggedUserId = users[i].getUserId();
                     system("pause");
                     return;
@@ -98,7 +98,7 @@ User UserManager::enterNewUserData()
     do
     {
         system("cls");
-        cout << "    >>> SIGN UP <<<" << endl;
+        cout << ">>> SIGN UP <<<" << endl;
         cout << endl <<"Enter username: ";
         login = AuxiliaryFunctions::readLine();
         user.setLogin(login);

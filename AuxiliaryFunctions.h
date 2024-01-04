@@ -17,8 +17,8 @@ public:
     static int convertStringToInt(string stringNumber);
     static string convertDoubleToString(double doubleNumber);
     static double convertStringToDouble(string stringNumber);
-    static string changeCommaToDot(string input);
     static string convertFirstLetterToUppercaseRestLower(string text);
+    static string changeCommaToDot(string input);
 };
 
 #endif

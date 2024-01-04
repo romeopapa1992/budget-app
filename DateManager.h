@@ -19,9 +19,9 @@ public:
     string getDateString();
     int changeDateToIntNumber(string dateString);
     string changeDateToString(int dateInteger);
+    string createDate();
     string getTodaysDateFromSystem();
     void enterDateOfOperation();
-    string createDate();
     bool ifLeapYear(int year);
     bool ifDateHaveCorrectBeginning();
     bool ifDateCorrect();

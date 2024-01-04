@@ -40,7 +40,7 @@ void Operation::setOperationValue(float newOperationValue)
     operationValue = newOperationValue;
 }
 
-bool Operation::operator()(Operation a, Operation b)
+bool Operation::operator() (Operation a, Operation b)
 {
     return a.getDate() < b.getDate();
 }
